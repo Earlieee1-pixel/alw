@@ -1,0 +1,33 @@
+/* Tailwind CSS v4 — base import */
+@import "tailwindcss";
+
+/* ALW brand colors — deep teal ug warm cream */
+@theme {
+    --color-teal-50:  #f0fafa;
+    --color-teal-100: #d0eeee;
+    --color-teal-200: #a3dcdc;
+    --color-teal-300: #6ec4c3;
+    --color-teal-400: #45a8a7;
+    --color-teal-500: #288783;
+    --color-teal-600: #1f6e6b;
+    --color-teal-700: #185553;
+    --color-teal-800: #103c3b;
+    --color-teal-900: #082524;
+
+    --color-cream-50:  #fffdf9;
+    --color-cream-100: #fff8ee;
+    --color-cream-200: #ffebd0;
+    --color-cream-300: #fdd9aa;
+    --color-cream-400: #fbc47f;
+    --color-cream-500: #f9a84a;
+    --color-cream-600: #e08a28;
+    --color-cream-700: #b86d1a;
+    --color-cream-800: #8c5011;
+    --color-cream-900: #5e340a;
+}
+
+/* Base font smoothing */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
