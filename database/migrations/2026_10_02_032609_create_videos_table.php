@@ -24,18 +24,11 @@ return new class extends Migration
             // Video ID gikan sa YouTube/Vimeo para sa thumbnail
             $table->string('video_id')->nullable();
 
-            // Source platform
-            $table->enum('source', ['youtube', 'vimeo', 'other'])->default('youtube');
+            // Source platform — PostgreSQL compatible string
+            $table->string('source', 20)->default('youtube');
 
-            // Category para sa pag-organize
-            $table->enum('category', [
-                'onboarding',
-                'leadership',
-                'network',
-                'compliance',
-                'product',
-                'general',
-            ])->default('general');
+            // Category para sa pag-organize — PostgreSQL compatible string
+            $table->string('category', 30)->default('general');
 
             // Kung published o draft pa
             $table->boolean('is_published')->default(true);

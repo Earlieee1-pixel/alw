@@ -31,8 +31,8 @@ return new class extends Migration
             // Depth level — 0 = root, 1 = level 2, etc.
             $table->unsignedInteger('depth')->default(0);
 
-            // Side — L or R (null for root)
-            $table->enum('side', ['L', 'R'])->nullable();
+            // Side — L or R (null for root) — PostgreSQL compatible string
+            $table->string('side', 5)->nullable();
 
             // Ngalan nga gi-fill sa slot
             $table->string('name')->nullable();

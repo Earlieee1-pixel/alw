@@ -21,7 +21,8 @@ return new class extends Migration
             $table->foreignId('referred_by')->nullable()->constrained('users')->nullOnDelete()->after('invite_code');
 
             // Status sa account — active, inactive, suspended
-            $table->enum('status', ['active', 'inactive', 'suspended'])->default('active')->after('referred_by');
+            // PostgreSQL compatible — string instead of enum
+            $table->string('status', 20)->default('active')->after('referred_by');
         });
     }
 

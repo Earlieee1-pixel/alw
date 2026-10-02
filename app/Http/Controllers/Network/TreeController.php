@@ -29,11 +29,15 @@ class TreeController extends Controller
 
         // I-load ang tanan nga 31 nodes para sa current view
         $nodes = TreeNode::where('position_key', 'like', $rootKey.'%')
-            ->whereRaw('LENGTH(position_key) - LENGTH(REPLACE(position_key, "-", "")) <= ?', [
-                substr_count($rootKey, '-') + 4, // max 4 dashes from root = 5 levels
-            ])
             ->orderBy('display_number')
             ->get()
+            ->filter(function ($node) use ($rootKey) {
+                // I-filter sa PHP level — max 4 dashes from root = 5 levels
+                $dashesInRoot = substr_count($rootKey, '-');
+                $dashesInKey = substr_count($node->position_key, '-');
+
+                return ($dashesInKey - $dashesInRoot) <= 4;
+            })
             ->keyBy('position_key');
 
         // I-re-number ang display numbers base sa current root (1-31)

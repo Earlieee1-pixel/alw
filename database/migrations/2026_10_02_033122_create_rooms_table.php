@@ -26,8 +26,8 @@ return new class extends Migration
             // Description optional
             $table->text('description')->nullable();
 
-            // Kung active pa ang room o closed na
-            $table->enum('status', ['active', 'closed'])->default('active');
+            // Kung active pa ang room o closed na — PostgreSQL compatible string
+            $table->string('status', 20)->default('active');
 
             // Scheduled start time — optional
             $table->dateTime('scheduled_at')->nullable();
