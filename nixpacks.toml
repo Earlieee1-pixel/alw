@@ -1,0 +1,37 @@
+# Railway build config — tells Nixpacks how to build the ALW Laravel app
+
+[phases.setup]
+nixPkgs = [
+    "php83",
+    "php83Extensions.pdo",
+    "php83Extensions.pdo_mysql",
+    "php83Extensions.mbstring",
+    "php83Extensions.tokenizer",
+    "php83Extensions.xml",
+    "php83Extensions.ctype",
+    "php83Extensions.fileinfo",
+    "php83Extensions.openssl",
+    "php83Extensions.curl",
+    "php83Extensions.zip",
+    "php83Extensions.bcmath",
+    "php83Extensions.intl",
+    "nodejs_20",
+]
+
+[phases.install]
+cmds = [
+    "composer install --optimize-autoloader --no-dev --no-interaction",
+    "npm install",
+    "npm run build"
+]
+
+[phases.build]
+cmds = [
+    "php artisan config:cache",
+    "php artisan route:cache",
+    "php artisan view:cache"
+]
+
+[start]
+# I-run ang migrations then start ang PHP server
+cmd = "php artisan migrate --force && php -S 0.0.0.0:$PORT -t public"
